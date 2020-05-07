@@ -1,0 +1,54 @@
+<%content_for :title, "Gossip" %>
+
+     <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Bienvenue sur la page de  <%= @user.first_name %> <%= @user.last_name %> ! </h1>
+          <p class="lead text-muted">Ici, c'est le profil de ce user, c'est stylé nan ?</p>
+        </div>
+      </section>
+
+
+
+ <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-12 box-shadow">
+                  <p class="card-text">Informations sur <%= @user.first_name %> <%= @user.last_name %> <br/>
+                    Prénom : <%= @user.first_name %> <br/>
+                    Nom de Famille : <%= @user.last_name %> <br/>
+                    Description : <%= @user.description %> <br/>
+                    Ville : <%=link_to @user.city.name, city_path(:id => @user.city_id) %> <br/>
+
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<h5>Tu peux voir  ci-dessous la liste des potins qu'il a crée !</h5>
+
+
+<div class="row">
+  <p> <% @user.gossips.each do |gossip|  %> </p>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                  <p class="card-text"><%= gossip.title %> by <%= gossip.user.first_name %></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <%= link_to "Voir la page du Gossip", gossip_path(:id => gossip.id), :class => "btn btn-sm btn-outline-secondary" %>
+                    </div>
+                    <small class="text-muted">crée le : <%= gossip.created_at %></small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
